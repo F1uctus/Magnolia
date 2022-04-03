@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <Nullable>enable</Nullable>
+        <Authors>Ilya Nikitin</Authors>
+        <Description>An object trees binding library powered by Roslyn source generators.</Description>
+        <PackageProjectUrl>https://github.com/f1uctus/magnolia</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/f1uctus/magnolia.git</RepositoryUrl>
+        <PackageVersion>1.1.5</PackageVersion>
+        <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <!-- Do not include the generator as a lib dependency -->
+        <!--<IncludeBuildOutput>false</IncludeBuildOutput>-->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- Package the generator in the analyzer directory of the nuget package -->
+        <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.0.1" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.3" PrivateAssets="all" />
+    </ItemGroup>
+
+</Project>
